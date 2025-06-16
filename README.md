@@ -1,0 +1,1 @@
+# kelaim-diamon-gratis
